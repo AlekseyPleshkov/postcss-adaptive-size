@@ -1,11 +1,11 @@
 # postcss-adaptive-size
 
-PostCSS plugin for create adaptive elements
+PostCSS plugin for create adaptive sizes
 
 ## Install
 
 ```
-npm install postcss-adaptive-size --save
+yarn add postcss-adaptive-size --save
 ```
 
 ## Example
