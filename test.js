@@ -10,8 +10,26 @@ function run(t, input, output, opts = { }) {
     })
 }
 
-test('Add style for create adaptive element', t => {
-  return run(t, 
-    'div { adaptive: 300px 200px; }', 
+test('Create adaptive element', t => {
+  return run(t,
+    'div { adaptive: 300px 200px; }',
     'div {width: 100%;max-width: 300px;height: auto;min-height: 200px; }', { })
+})
+
+test('Create viewport element', t => {
+  return run(t,
+    'div { viewport: 100px 1200px vw, 100px 768px vh; }',
+    'div {width: 100px;width: 100px/1200px*100vw;height: 100px;height: 100px/768px*100vh; }', { })
+})
+
+test('Create viewport padding element', t => {
+  return run(t,
+    'div { viewport-padding: 100px 1200px vw, 100px 768px vh, 0px; }',
+    'div {padding: 100px/1200px*100vw 100px/768px*100vh 0px; }', { })
+})
+
+test('Create viewport margin element', t => {
+  return run(t,
+    'div { viewport-margin: 100px 1200px vw, 100px 768px vh, 0px; }',
+    'div {margin: 100px/1200px*100vw 100px/768px*100vh 0px; }', { })
 })
