@@ -19,17 +19,17 @@ test('Create adaptive element', t => {
 test('Create viewport element', t => {
   return run(t,
     'div { viewport: 100px 1200px vw, 100px 768px vh; }',
-    'div {width: 100px;width: 100px/1200px*100vw;height: 100px;height: 100px/768px*100vh; }', { })
+    'div {width: 100px;width: 8.3333vw;height: 100px;height: 13.0208vh; }', { })
 })
 
 test('Create viewport padding element', t => {
   return run(t,
     'div { viewport-padding: 100px 1200px vw, 100px 768px vh, 0px; }',
-    'div {padding: 100px/1200px*100vw 100px/768px*100vh 0px; }', { })
+    'div {padding: 8.3333vw 13.0208vh 0px; }', { })
 })
 
 test('Create viewport margin element', t => {
   return run(t,
     'div { viewport-margin: 100px 1200px vw, 100px 768px vh, 0px; }',
-    'div {margin: 100px/1200px*100vw 100px/768px*100vh 0px; }', { })
+    'div {margin: 8.3333vw 13.0208vh 0px; }', { })
 })

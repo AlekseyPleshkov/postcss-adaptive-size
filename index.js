@@ -24,13 +24,17 @@ module.exports = postcss.plugin('postcss-adaptive-size', (options) => {
       const height = params.length > 1 ? params[1].split(' ') : null
 
       if (width.length === 3) {
+        const calc = parseFloat(width[0]) / parseInt(width[1]) * 100
+        const result = calc.toFixed(4)
         parent.append(`width: ${width[0]};`)
-        parent.append(`width: ${width[0]}/${width[1]}*100${width[2]};`)
+        parent.append(`width: ${result}${width[2]};`)
       }
 
       if (height !== null && height.length === 3) {
+        const calc = parseFloat(height[0]) / parseInt(height[1]) * 100
+        const result = calc.toFixed(4)
         parent.append(`height: ${height[0]};`)
-        parent.append(`height: ${height[0]}/${height[1]}*100${height[2]};`)
+        parent.append(`height: ${result}${height[2]};`)
       }
 
       decl.remove()
@@ -39,18 +43,20 @@ module.exports = postcss.plugin('postcss-adaptive-size', (options) => {
     // Viewport padding/margin
     const viewportPadding = (decl, params, type) => {
       const parent = decl.parent
-      let result = ''
+      let parentResult = ''
 
       params.forEach(item => {
         const param = item.split(' ')
         if (param.length === 3) {
-          result += ` ${param[0]}/${param[1]}*100${param[2]}`
+          const calc = parseFloat(param[0]) / parseFloat(param[1]) * 100
+          const result = calc.toFixed(4)
+          parentResult += ` ${result}${param[2]}`
         } else {
-          result += ` ${param[0]}`
+          parentResult += ` ${param[0]}`
         }
       })
 
-      parent.append(`${type}:${result};`)
+      parent.append(`${type}:${parentResult};`)
       decl.remove()
     }
 
