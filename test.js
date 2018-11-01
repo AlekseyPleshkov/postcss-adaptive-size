@@ -19,7 +19,7 @@ test('Create adaptive element', t => {
 test('Create viewport element', t => {
   return run(t,
     'div { viewport: 100px 1200px vw, 100px 768px vh; }',
-    'div {width: 100px;width: 8.3333vw;height: 100px;height: 13.0208vh; }', { })
+    'div {width: 100%;max-width: 100px;max-width: 8.3333vw;height: auto;min-height: 100px;min-height: 13.0208vh; }', { })
 })
 
 test('Create viewport padding element', t => {

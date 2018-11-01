@@ -26,15 +26,15 @@ module.exports = postcss.plugin('postcss-adaptive-size', (options) => {
       if (width.length === 3) {
         const calc = parseFloat(width[0]) / parseInt(width[1]) * 100
         const result = calc.toFixed(4)
-        parent.append(`width: ${width[0]};`)
-        parent.append(`width: ${result}${width[2]};`)
+        parent.append(`width: 100%; max-width: ${width[0]};`)
+        parent.append(`max-width: ${result}${width[2]};`)
       }
 
       if (height !== null && height.length === 3) {
         const calc = parseFloat(height[0]) / parseInt(height[1]) * 100
         const result = calc.toFixed(4)
-        parent.append(`height: ${height[0]};`)
-        parent.append(`height: ${result}${height[2]};`)
+        parent.append(`height: auto; min-height: ${height[0]};`)
+        parent.append(`min-height: ${result}${height[2]};`)
       }
 
       decl.remove()
